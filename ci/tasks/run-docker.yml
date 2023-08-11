@@ -6,7 +6,7 @@ image_resource:
     repository: node
     
 inputs:
-  - name: taskrepo
+  - name: concourse
 
 run:
   args: ./concourse/ci/tasks/run-docker.sh
