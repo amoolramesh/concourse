@@ -7,8 +7,5 @@ image_resource:
 
 run:
   path: /bin/bash
-<<<<<<< HEAD
   args: ["concourse/ci/tasks/run-docker.sh"]
-=======
-  args: ["concourse/ci/tasks//run-docker.sh"]
->>>>>>> 0ce05a9d6cbd5182ad4b60b0eeabbf2df73611a5
+
