@@ -7,5 +7,5 @@ image_resource:
 
 run:
   path: /bin/bash
-  args: ["taskrepo/ci/tasks/run-docker.sh"]
+  args: ["amoolramesh/concourse/ci/tasks/run-docker.sh"]
 
