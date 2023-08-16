@@ -25,3 +25,5 @@ jobs:
       params:
         build: gdt-project-test
         serial: true
+    - task: web
+      file: concourse/ci/Deploy.yml
