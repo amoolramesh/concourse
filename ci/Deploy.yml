@@ -1,0 +1,47 @@
+resource_types:
+- name: ssh
+  type: docker-image
+  source:
+    repository: edtan1/concourse-ssh-resource
+
+resources:
+  - name: ec2-ssh
+    type: ssh
+    source:
+      hostname: ec2-65-2-181-72.ap-south-1.compute.amazonaws.com
+      username: ubuntu
+      private_key: |
+        -----BEGIN RSA PRIVATE KEY-----
+        MIIEowIBAAKCAQEAh7ulQ/8kt+HIM67cIVLm/paxg682alwlmHxjiFLPAV15blNe
+        I+TF8/BapZjc52VYqYUIEntxRmWftwY/Uhk5YsR+214E3qKGQ4iqNDnmRyGL8Qc7
+        hxMtC960L3CELwacc7fiyBlw0H4jPM3MqS0sXZexVbCqii0/BfoVJ1p3J51jZDZo
+        OHMO6WuOT+hX2qknJ4oST/f5H0PAOzMbfKePyAEL5g9aE2dfni3ApMSPcpSYZBT1
+        sC+eLL5XnHJLLkQwVhyS3qSLL9Q2h81/lRV9nsLZ6WnPyfowqv0/ejgILKdMq4Xp
+        uhuX9NgkxmL55rnNLPoLSf6eQ4RB4IC3XEqsWQIDAQABAoIBADQFiTvcaBhJ4s9c
+        L2ZePcZJv1N3LeXp10bwNb2j707YopfUP/qFzhDGiBd71P6i6y5dnFBpG2sdu+8L
+        5+zxWfsu0GgHStqBc/AiSwmlP0r34ojIeto0UUmBW5HrD95uLDx1t+d1SLXAAoVl
+        YxFcDOr6Hq92/IXk/Yiu5rikhZKawu/X9zp6KqwkC9K56KGBcMB3a/UqKsL19xFI
+        yWvWSg3MMXhozpNl6ENe/kCYLUB1hJOWq1PuAneSGSf3d2kuQQVlvVJey5jdM0HJ
+        LrvoeiUY1y/JACgLw8Fu4in/KmO62Zt8Z0EaB07FsqfQF8zZjgH9u8P6jqH2Fvfb
+        lU3a7mECgYEAv/xTXQ4xi0gdT6U7kdRzfMTtSNkaZekH950BdABeDMcvwl7YQH2P
+        6aWrG5A8sG8Il8biCIKsHRej7xYCG8DmfY7cSo31dsEjMRUIS5rYfRTJRq8yoE/8
+        FDbZh4IOMXnZyLpMkIMmmVNJ9VVwz8LkWCHgxKQX4XOPiTP9xHXIqP0CgYEAtP2o
+        Y3aPAGqhBhLMSx2w50CMo4D0SIjXdFF4ire1dyORwic+2ysGkjrjNOmT5i62P1gV
+        zyBAJvMY5HpyOuBVgIP02uoM4uc7q6sGbQVGIi0yv62V/bWDm0ou5J8NZjthxgCx
+        +OLMtk0dkhqNRNAQIiWpVKeXAqRTyCqEuxMvzY0CgYEAqxuOiP9fdM2fIh8YCo8Z
+        Jvi0qxqkBnQ835mVc/fn2uekT04M2t2N6CX5bKWPEYjEVdGyHvenwn4RY8NvuaCh
+        TQKIoAIJ5f+ZB+PA8vFdRY3DHjaDnpHrD3EbS0TEtZ/uVJKGLr5VJo4u+nNeCi2f
+        KlV3aIr/pbZDFXu7DuATKVkCgYBgaNYv1VGraSFJOO41/STkqk/AMMrvcGVEgrlx
+        Oxag1gOopnsnCC5B6rho0RuFe9B8wZEsegNyPABAhLEgh6tEAAaILjCbFY2Fjl6n
+        6C1Ju0XTMMY7FVt7dvKvucHLeUpFzM0AxN9DJKTh1N73jtVpOyKOA4+/SoWOlIeL
+        l1bZaQKBgA2BNYXf9lSqYLPh3f1K7kAN+Rwrwzoj1T1Kk8BIdkq+T6YC+psmqsAK
+        HHnVXJ3Zo0sP08Q5lI2RZW6MWZtxOH162P6RjYMA6ptiQrnudcmcO94GoyUAqUb2
+        B9vQEuzZEiioXiROkxDmz1pdtCC5CdopIBmIvCBuf7MT++y2EUns
+        -----END RSA PRIVATE KEY-----
+jobs:
+  - name: ssh-to-ec2
+    plan:
+      - put: ec2-ssh
+        params:
+          command: sudo docker pull prakash154/springboot
+          command: sudo docker run -d -p 8081:8081 --name mycom prakash154/springboot

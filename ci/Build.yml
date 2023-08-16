@@ -1,0 +1,27 @@
+resources:
+- name: gdt-project-test
+  type: git
+  source:
+    uri: https://github.com/amoolramesh/concourse.git
+    branch: main
+    username: amoolramesh11@gmail.com
+    password: Git@2023
+
+
+
+- name: springboot-test
+  type: docker-image
+  source:
+    username: 23380
+    password: Smokings@23
+    repository: 23380/test-image-7
+
+jobs:
+  - name: create-docker-image
+    plan:
+    - get: gdt-project-test
+      trigger: true
+    - put: springboot-test
+      params:
+        build: gdt-project-test
+        serial: true
